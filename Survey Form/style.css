@@ -6,6 +6,7 @@
     --primary-color-light: hsl(198,100%,87%);
     --form-bg-color: #fff;
     --text-color: #000;
+    --primary-text-color: hsl(198,78%,38%); /* to match WCAG's contrast ratio guidelines*/
     --btn-font-size : 24px;
 }
 @media (max-width: 540px) {
@@ -59,7 +60,7 @@ form {
 
 
 form > label, legend{
-    color: var(--primary-color);
+    color: var(--primary-text-color);
     padding-left: 0.2em;
 }
 
@@ -109,14 +110,17 @@ input[type=submit]{
     cursor: pointer;
     padding: 1.5em;
     transition: 200ms;
+    text-shadow: 8px 8px 12px rgba(0,0,0,0.2);
+  
 
     
 }
 
 input[type=submit]:hover{
-    text-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
+    text-shadow: 8px 8px 8px rgba(0,0,0,0.5);
     font-weight: 750;
-    font-size: calc(var(--btn-font-size) * 1.2 );
+/*     font-size: calc(var(--btn-font-size) * 1.2 );*/
+    transform: scale(1.5);
 }
 
 fieldset ul{
