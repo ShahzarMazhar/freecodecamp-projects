@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1 id="title">Restaurant Customer Satisfaction Survey</h1>
+        <p id="description">Please take a few minuts to review us!</p>
+    </header>
+    <main>
+        <form action="" id="survey-form">
+
+                <label for="name" id="name-label">Name <span>*</span>
+                    <input type="text" name="name" id="name" placeholder="What's your name?" required>
+                </label>
+    
+                <label for="email" id="email-label">Email <span>*</span>
+                    <input type="email" name="email" id="email" placeholder="What's your email address?" required>
+                </label>
+    
+                <label for="number" id="number-label">Age
+                    <input type="number" name="age" id="number" min="13" max="79" placeholder="How old are you?">
+                </label>
+    
+                <label for="dropdown">Did you go to our physical restaurant or did you order a delivery?
+                    <select name="" id="dropdown" style="text-align: center;">
+                        <option value="" selected disabled hidden>--- Select ---</option>
+                        <option value="home-delivey">Home Delivery</option>
+                        <option value="physical-restaurant">Physical Restaurant</option>
+                    </select>
+                </label>
+        
+                <fieldset id="rating">
+                    <legend>How was our Service?</legend>
+    
+                    <input type="radio" name="rating" value="1" id="very-poor">
+                    <label for="very-poor">Very Poor</label>
+                    
+                    <input type="radio" name="rating" value="2" id="poor">
+                    <label for="poor">Poor</label>
+    
+                    <input type="radio" name="rating" value="3" id="fair">
+                    <label for="fair">Fair</label>
+    
+                    <input type="radio" name="rating" value="4" id="good">
+                    <label for="good">Good</label>
+    
+                    <input type="radio" name="rating" value="5" id="Excellent">
+                    <label for="excellent">Excellent</label>
+    
+                </fieldset>
+        
+                <fieldset>
+                    <legend>How can we surve you better?</legend>
+    
+                    <ul>
+                        <li>
+                            <input type="checkbox" name="better-surve" id="more-resipes" value="more-resipes">
+                            <label for="more-resipes">By adding more recipes to the menu</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="better-surve" id="faster-delivery" value="faster-delivery">       
+                            <label for="faster-delivery">By increasing speed of service</label>
+    
+                        </li>
+                        <li>
+                            <input type="checkbox" name="better-surve" id="upskill-team" value="upskill-team">      
+                            <label for="upskill-team">By upskilling the team</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="better-surve" id="others" value="others">        
+                            <label for="others">Others</label>
+                        </li>
+                    </ul>
+    
+              </fieldset>
+                <label for="additional-comment">Additional Comment</label>
+                <textarea name="additional-comment" id="additional-comment" cols="30" rows="10" placeholder="Anything else that we can do to survey you better?"></textarea>
+                
+            <input type="submit" value="Submit" id="submit"></button>
+            
+        </form>
+    </main>
+    
+    
+</body>
+</html>

@@ -1,0 +1,125 @@
+*{
+    box-sizing: border-box;
+}
+:root {
+    --primary-color: hsl(198,78%,54%);
+    --primary-color-light: hsl(198,100%,87%);
+    --form-bg-color: #fff;
+    --text-color: #000;
+    --btn-font-size : 24px;
+}
+@media (max-width: 540px) {
+    :root {
+        --btn-font-size : 20px;
+    }
+}
+body {
+    background-color: var(--primary-color-light);
+    font-family: sans-serif;
+}
+header {
+    max-width: 750px;
+    margin: auto;
+    text-align: center;
+}
+main {
+    max-width: 720px;
+    /* background: linear-gradient(168deg, var(--primary-color) 0%, var(--primary-color) 10%, white 10%, white 100%);  */
+    background: var(--form-bg-color);
+    border-radius: 4px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 7px 7px 30px -10px rgba(0,0,0,0.75);
+    border-radius: 4px;
+    border-top: 1px solid var(--primary-color);
+    border-left: 1px solid var(--primary-color);
+    margin: auto;
+    position: relative;
+
+}
+
+
+main::before, main::after{
+    content: "";
+    height: 120px;
+    width: 100%;
+    position: absolute;
+    background-color: var(--primary-color);
+    clip-path: polygon(0 0, 0 100%, 90% 0);
+}
+
+main::after{
+    clip-path: polygon(10% 100%,100% 0, 100% 100%);
+    bottom: 0;
+}
+
+
+
+form {
+    padding: 10em 2em 6em 2em;
+}
+
+
+form > label, legend{
+    color: var(--primary-color);
+    padding-left: 0.2em;
+}
+
+label span {
+    color: hsl(350,100%,50%);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+fieldset,
+select,
+textarea{
+    width: 100%;
+    padding: 0.25em 0.5em;
+    margin-top: 0.25em;
+    margin-bottom: 1.5em;
+    border: 1px solid var(--primary-color);
+    background-color: transparent;
+    border-radius: 0.25rem;
+    outline: none;
+
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea{
+    border: none;
+    border-bottom: 1px solid var(--primary-color);
+
+
+}
+
+input[type=submit]{
+
+
+    position: absolute;
+    bottom: 0.2em;
+    right: 0.2em;
+    z-index: 1;
+    color: white;
+    background-color: transparent;
+    border: none;
+    font-weight: 600;
+    font-size: var(--btn-font-size);
+    cursor: pointer;
+    padding: 1.5em;
+    transition: 200ms;
+
+    
+}
+
+input[type=submit]:hover{
+    text-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
+    font-weight: 750;
+    font-size: calc(var(--btn-font-size) * 1.2 );
+}
+
+fieldset ul{
+    list-style: none;
+    padding: 0;
+}
