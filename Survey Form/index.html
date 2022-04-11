@@ -15,11 +15,11 @@
     <main>
         <form action="" id="survey-form">
 
-                <label for="name" id="name-label">Name <span>*</span>
+                <label for="name" id="name-label">Name <sup>(Required)</sup>
                     <input type="text" name="name" id="name" placeholder="What's your name?" required>
                 </label>
     
-                <label for="email" id="email-label">Email <span>*</span>
+                <label for="email" id="email-label">Email <sup>(Required)</sup>
                     <input type="email" name="email" id="email" placeholder="What's your email address?" required>
                 </label>
     
@@ -27,11 +27,11 @@
                     <input type="number" name="age" id="number" min="13" max="79" placeholder="How old are you?">
                 </label>
     
-                <label for="dropdown">Did you go to our physical restaurant or did you order a delivery?
+                <label for="dropdown">Did you order a home delivery or go to our restaurant?
                     <select name="" id="dropdown" style="text-align: center;">
                         <option value="" selected disabled hidden>--- Select ---</option>
                         <option value="home-delivey">Home Delivery</option>
-                        <option value="physical-restaurant">Physical Restaurant</option>
+                        <option value="restaurant">Restaurant</option>
                     </select>
                 </label>
         
@@ -80,7 +80,7 @@
     
               </fieldset>
                 <label for="additional-comment">Additional Comment</label>
-                <textarea name="additional-comment" id="additional-comment" cols="30" rows="10" placeholder="Anything else that we can do to survey you better?"></textarea>
+                <textarea name="additional-comment" id="additional-comment" cols="30" rows="10" placeholder="Anything else that we can do to serve you better?"></textarea>
                 
             <input type="submit" value="Submit" id="submit"></button>
             
