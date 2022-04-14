@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Documetation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header id="header-sm">
+
+        <div class="logo">
+            <img src="https://avatars.githubusercontent.com/u/18204561?v=4" alt="Shahzar Mazhar" id="header-img">
+        </div>
+    </header>
+    <input type="checkbox" name="" id="toggle">
+    <label for="toggle" ><div class="menu-toggle"></div></label>
+    <nav id="navbar">
+
+        <header>
+            <h1>GitHub Docs</h1>
+            <p>Connect with SSH</p>
+        </header>
+        <ul>
+            <li><a href="#About_SSH" class="nav-link">About SSH</a></li>
+            <li><a href="#Check_for_existing_SSH_keys" class="nav-link">Check for existing SSH keys</a></li>
+            <li><a href="#Generate_new_SSH_key" class="nav-link">Generate new SSH key</a></li>
+            <li><a href="#Add_a_new_SSH_key" class="nav-link">Add a new SSH key</a></li>
+            <li><a href="#Test_your_SSH_connection" class="nav-link">Test your SSH connection</a></li>
+            <li><a href="#SSH_key_passphrases" class="nav-link">SSH key passphrases</a></li>
+        </ul>
+    </nav>
+    <main id="main-doc">
+        <section class="main-section" id="About_SSH" style="margin-top: -5em;">
+            <header>About SSH</header>
+            <div id="content">
+                <p>When you set up SSH, you will need to generate a new SSH key and add it to the ssh-agent. You must add the SSH key to your account on GitHub before you use the key to authenticate. For more information, see "<a href="#Generate_new_SSH_key">Generating a new SSH key and adding it to the ssh-agent</a>" and "<a href="#Add_a_new_SSH_key">Adding a new SSH key to your GitHub account</a>."</p>
+                <p>You can further secure your SSH key by using a hardware security key, which requires the physical hardware security key to be attached to your computer when the key pair is used to authenticate with SSH. You can also secure your SSH key by adding your key to the ssh-agent and using a passphrase. For more information, see "Working with SSH key passphrases."</p>
+                <p>To use your SSH key with a repository owned by an organization that uses SAML single sign-on, you must authorize the key. For more information, see "Authorizing an SSH key for use with SAML single sign-on" in the GitHub Enterprise Cloud documentation.</p>
+                <p>To maintain account security, you can regularly review your SSH keys list and revoke any keys that are invalid or have been compromised. For more information, see "Reviewing your SSH keys."</p>
+                <p>If you haven't used your SSH key for a year, then GitHub will automatically delete your inactive SSH key as a security precaution. For more information, see "Deleted or missing SSH keys."</p>
+                <p>Organizations that use GitHub Enterprise Cloud can provide SSH certificates, which members can use to access that organization's repositories without adding the certificate to their account on GitHub. If you're using an SSH certificate, you cannot use the certificate to access forks of the organization's repositories, if the fork is owned by your personal account. For more information, see "About SSH certificate authorities" in the GitHub Enterprise Cloud documentation.</p>
+            </div>
+
+        </section>
+<hr>
+        <section class="main-section" id="Check_for_existing_SSH_keys">
+            <header>Check for existing SSH keys</header>
+            <div id="content">
+                <blockquote>
+                    <p><strong>Note:</strong> GitHub improved security by dropping older, insecure key types on March 15, 2022.</p>
+                    <p>As of that date, DSA keys ( <code>ssh-dss</code>) are no longer supported. You cannot add new DSA keys to your personal account on GitHub.com.</p>
+                    <p>RSA keys (<code>ssh-rsa</code>) with a <code>valid_after</code> before November 2, 2021 may continue to use any signature algorithm. RSA keys generated after that date must use a SHA-2 signature algorithm. Some older clients may need to be upgraded in order to use SHA-2 signatures.</p>
+                </blockquote>
+                <ol>
+                    <li>Open Terminal</li>
+                    <li>Enter <code>ls -al ~/.ssh</code> to see if existing SSH keys are present.
+                        <br><code>
+                                <p>
+                                    $ ls -al ~/.ssh <br>
+                                    # Lists the files in your .ssh directory, if they exist
+                                </p>
+                            </code>
+                    </li>
+                    <li>
+                        Check the directory listing to see if you already have a public SSH key. By default, the filenames of supported public keys for GitHub are one of the following.
+                        <em>
+                            <ul>
+                                <li>id_rsa.pub</li>
+                                <li>id_ecdsa.pub</li>
+                                <li>id_ed25519.pub</li>
+                            </ul>
+                        </em>
+                        <blockquote>
+                            <p><strong>Tip:</strong> If you receive an error that ~/.ssh doesn't exist, you do not have an existing SSH key pair in the default location. You can create a new SSH key pair in the next step.</p>
+                        </blockquote>
+                    </li>
+                    <li>
+                        Either generate a new SSH key or upload an existing key.
+                        <ul>
+                            <li>If you don't have a supported public and private key pair, or don't wish to use any that are available, generate a new SSH key.</li>
+                            <li>If you see an existing public and private key pair listed (for example, id_rsa.pub and id_rsa) that you would like to use to connect to GitHub, you can add the key to the ssh-agent.</li>
+                        </ul>
+                        <ul class="no-style"><li>For more information about generation of a new SSH key or addition of an existing key to the ssh-agent, see "Generating a new SSH key and adding it to the ssh-agent."</li></ul>
+                    </li>
+                </ol>
+            </div>
+        </section>
+        <hr>
+
+
+        <section class="main-section" id="Generate_new_SSH_key">
+            <header>Generate new SSH key</header>
+            <div id="content">
+                <ol>
+                    <li>Open Terminal.</li>
+                    <li>Paste the text below, substituting in your GitHub email address.
+                        <code><p>$ ssh-keygen -t ed25519 -C "your_email@example.com"</p></code>
+                        <blockquote>
+                            <p><stromg>Note:</stromg> If you are using a legacy system that doesn't support the Ed25519 algorithm, use:</p>
+                            <code><p>$ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"</p></code>
+                        </blockquote>
+                    </li>
+                </ol>
+                <p>This creates a new SSH key, using the provided email as a label.</p>
+                <code><p>> Generating public/private algorithm key pair.</p></code>
+                <ol>
+                    <li>
+                        When you're prompted to "Enter a file in which to save the key," press Enter. This accepts the default file location.
+                        <code><p>> Enter a file in which to save the key (/home/you/.ssh/algorithm): [Press enter]</p></code>
+                    </li>
+
+                    <li>At the prompt, type a secure passphrase. For more information, see "Working with SSH key passphrases."
+                        <code>
+                            <p>
+                                > Enter passphrase (empty for no passphrase): [Type a passphrase] <br>
+                                > Enter same passphrase again: [Type passphrase again]
+                            </p>
+                        </code>
+                    </li>
+                </ol>
+            </div>
+        </section>
+<hr>
+
+        <section class="main-section" id="Add_a_new_SSH_key">
+            <header>Add a new SSH key</header>
+            <div id="content">
+                <p>Before adding a new SSH key to your account on GitHub.com, you should have:</p>
+                <ul>
+                    <li>Checked for existing SSH keys</li>
+                    <li>Generating a new SSH key and adding it to the ssh-agent
+                    </li>
+                </ul>
+                <p>After adding a new SSH key to your account on GitHub.com, you can reconfigure any local repositories to use SSH. For more information, see "Switching remote URLs from HTTPS to SSH."</p>
+                <blockquote>
+                    <p><strong>Note:</strong> GitHub improved security by dropping older, insecure key types on March 15, 2022.</p>
+                    <p>As of that date, DSA keys ( <code>ssh-dss</code>) are no longer supported. You cannot add new DSA keys to your personal account on GitHub.com.</p>
+                    <p>RSA keys (<code>ssh-rsa</code>) with a <code>valid_after</code> before November 2, 2021 may continue to use any signature algorithm. RSA keys generated after that date must use a SHA-2 signature algorithm. Some older clients may need to be upgraded in order to use SHA-2 signatures.</p>
+                </blockquote>
+
+                <ol>
+                    <li>Copy the SSH public key to your clipboard.
+                        <p>If your SSH public key file has a different name than the example code, modify the filename to match your current setup. When copying your key, don't add any newlines or whitespace.</p>
+                        <code>
+                            <p>
+                                $ cat ~/.ssh/id_ed25519.pub
+                                <br># Then select and copy the contents of the id_ed25519.pub file
+                                <br># displayed in the terminal to your clipboard
+                            </p>
+                        </code>
+                        <blockquote>
+                            <p>
+                                <strong>Tip:</strong> Alternatively, you can locate the hidden .ssh folder, open the file in your favorite text editor, and copy it to your clipboard.
+                            </p>
+                        </blockquote>
+                    </li>
+                    <li>In the upper-right corner of any page, click your profile photo, then click Settings.</li>
+                    <li>In the "Access" section of the sidebar, click <strong>SSH and GPG keys</strong>.</li>
+                    <li>Click <strong>New SSH key</strong> or <strong>Add SSH key</strong>.</li>
+                    <li>In the "Title" field, add a descriptive label for the new key. For example, if you're using a personal Mac, you might call this key "Personal MacBook Air".</li>
+                    <li>Paste your key into the "Key" field.</li>
+                    <li>Click <strong>Add SSH key.</strong></li>
+                    <li>If prompted, confirm your GitHub password.</li>
+                </ol>
+
+            </div>
+        </section>
+       <hr>
+        <section class="main-section" id="Test_your_SSH_connection">
+            <header>Test your SSH connection</header>
+            <div id="content">
+                <p>Before testing your SSH connection, you should have:</p>
+                <ul>
+                    <li>Checked for existing SSH keys</li>
+                    <li>Generating a new SSH key and adding it to the ssh-agent</li>
+                    <li>Added a new SSH key to your GitHub account</li>
+                </ul>
+                <p>When you test your connection, you'll need to authenticate this action using your password, which is the SSH key passphrase you created earlier. For more information on working with SSH key passphrases, see "Working with SSH key passphrases".</p>
+
+                <ol>
+                    <li>Open Terminal.</li>
+                    <li>Enter the following:
+                        <code>
+                            <p>
+                                $ ssh -T git@github.com
+                                <br> # Attempts to ssh to GitHub
+                            </p>
+                        </code>
+                        <p>You may see a warning like this:</p>
+                        <code>
+                            <p>
+                                > The authenticity of host 'github.com (IP ADDRESS)' can't be established.
+                                <br> > RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+                                <br> > Are you sure you want to continue connecting (yes/no)?
+                            </p>
+                        </code>
+                    </li>
+                    <li>
+                        Verify that the fingerprint in the message you see matches GitHub's public key fingerprint. If it does, then type <code>yes</code>:
+                        <code>
+                            <p>
+                                > Hi username! You've successfully authenticated, but GitHub does not
+                                <br> > provide shell access.
+                            </p>
+                        </code>
+                        <p>You may see this error message:</p>
+                        <code>
+                            <p>
+                                ...
+                                <br> Agent admitted failure to sign using the key.
+                                <br> debug1: No more authentication methods to try.
+                                <br> Permission denied (publickey).
+                            </p>
+                        </code>
+
+                        <p>This is a known problem with certain Linux distributions. For more information, see "Error: Agent admitted failure to sign".</p>
+                    </li>
+                    <li>Verify that the resulting message contains your username. If you receive a "permission denied" message, see "Error: Permission denied (publickey)".</li>
+
+                </ol>
+                
+            </div>
+        </section>
+       <hr>
+        <section class="main-section" id="SSH_key_passphrases">
+            <header>SSH key passphrases</header>
+            <div id="content">
+                <p>With SSH keys, if someone gains access to your computer, they also gain access to every system that uses that key. To add an extra layer of security, you can add a passphrase to your SSH key. You can use <code>ssh-agent</code> to securely save your passphrase so you don't have to reenter it.</p>
+                <h3>Adding or changing a passphrase</h3>
+                <p>You can change the passphrase for an existing private key without regenerating the keypair by typing the following command:</p>
+                <code>
+                    <p>
+                        $ ssh-keygen -p -f ~/.ssh/id_ed25519
+                        <br> > Enter old passphrase: [Type old passphrase]
+                        <br> > Key has comment 'your_email@example.com'
+                        <br> > Enter new passphrase (empty for no passphrase): [Type new passphrase]
+                        <br> > Enter same passphrase again: [Repeat the new passphrase]
+                        <br> > Your identification has been saved with the new passphrase.
+                    </p>
+                </code>
+                <p>If your key already has a passphrase, you will be prompted to enter it before you can change to a new passphrase.</p>
+            </div>
+
+        </section>
+        
+    </main>
+    <footer>
+        <p>Copyright &copy; Shahzar Mazhar ❤️ FreeCodeCamp</p>
+    </footer>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</body>
+</html>
