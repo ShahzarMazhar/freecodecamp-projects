@@ -35,3 +35,4 @@ This all is done with the help of [freeCodeCamp](https://www.freecodecamp.org), 
 
 Now it is time to explore the JavaScript.
 
+(checkout other projects)[https://shahzarmazhar.github.io/]
